@@ -1,0 +1,19 @@
+.myInp {
+  width: 90%;
+  height: 40px;
+  padding: 5px 15px;
+  margin-bottom: 25px;
+  border: 2px solid #8b94d9;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.myInp[type="radio"] {
+  height: 15px;
+  width: 15px;
+  margin: 10px 10px;
+}
+
+.myInp[type="radio"]:focus {
+  outline: none;
+}
