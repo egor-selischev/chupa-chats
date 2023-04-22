@@ -8,6 +8,7 @@ const Header = () => {
   const logout = () => {
     setIsAuth(false)
     localStorage.removeItem('auth')
+    localStorage.removeItem('token')
   }
 
   return (

@@ -1,13 +1,40 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
 import MyInput from "../components/UI/input/MyInput";
 import MyButton from "../components/UI/button/MyButton";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {registrationAPI} from "../http/userAPI";
+import {AuthContext} from "../context/context";
 
 const SingUp = () => {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [date, setDate] = useState('')
+  const [gender, setGender] = useState('male')
   const today = new Date().toISOString().slice(0, 10)
+  const navigate = useNavigate()
+  const {setIsAuth} = useContext(AuthContext)
+
+  const handleChange = (e) => {
+    setGender(e.target.value)
+  }
+
+  const registration = async event => {
+    try {
+      event.preventDefault()
+      const response = await registrationAPI(firstName, lastName, date, email, password, gender)
+      console.log(response)
+      setIsAuth(true)
+      navigate("/")
+      localStorage.setItem('auth', 'true')
+    } catch (e) {
+        alert(e.response.data.message)
+    }
+  }
 
   return (
-    <form className="Login-form">
+    <form className="Login-form" onSubmit={registration}>
       <span className="h2">
         <Link to="/login" className="Link-to-login">
           <svg width="12" height="26" viewBox="0 0 12 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,17 +43,17 @@ const SingUp = () => {
         </Link>
         Регистрация
       </span>
-      <MyInput type="text" placeholder="Имя..."/>
-      <MyInput type="text" placeholder="Фамилия..."/>
-      <MyInput type="email" placeholder="Email..."/>
-      <MyInput type="password" placeholder="Пароль..."/>
-      <MyInput type="date" min="1900-01-01" max={today} />
+      <MyInput type="text" placeholder="Имя..." value={firstName} onChange={e => setFirstName(e.target.value)}/>
+      <MyInput type="text" placeholder="Фамилия..." value={lastName} onChange={e => setLastName(e.target.value)}/>
+      <MyInput type="email" placeholder="Email..." value={email} onChange={e => setEmail(e.target.value)}/>
+      <MyInput type="password" placeholder="Пароль..." value={password} onChange={e => setPassword(e.target.value)}/>
+      <MyInput type="date" min="1900-01-01" max={today} value={date} onChange={e => setDate(e.target.value)}/>
       <fieldset>
         <legend>Пол:</legend>
           <div style={{paddingBottom: '5px'}}>
-            <MyInput type="radio" id="male" name="gender" value="male" checked/>
+            <MyInput type="radio" id="male" onChange={handleChange} name="gender" value="male" checked />
             <label htmlFor="male">Мужской</label>
-            <MyInput type="radio" id="female" name="gender" value="female"/>
+            <MyInput type="radio" id="female" onChange={handleChange} name="gender" value="female" />
             <label htmlFor="female">Женский</label>
           </div>
       </fieldset>
