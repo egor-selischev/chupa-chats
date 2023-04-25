@@ -10,7 +10,7 @@ import SingUp from "../pages/SingUp";
 import Settings from "../pages/Settings";
 
 const AppRouter = () => {
-  const {isLoading} = useContext(AuthContext)
+  const {isLoading, test} = useContext(AuthContext)
   const profiles = [
     {img: 'https://i.pinimg.com/originals/69/2e/64/692e6421912e29184674dd58ef9f5e18.jpg', name: 'Котик Обыкновенный', date: '19.11.2001'}
   ]

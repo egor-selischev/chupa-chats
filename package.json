@@ -9,10 +9,15 @@
     "axios": "^1.3.6",
     "dotenv": "^16.0.3",
     "env": "^0.0.2",
+    "net": "^1.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^0.6.0",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -11,8 +11,18 @@ export const loginAPI = async (email, password) => {
   return response
 }
 
+export const conWebSos = async (senderId, recipientId) => {
+  const response = await $authHost.get('messages/' + senderId + '/' + recipientId)
+  console.log('-------------------------')
+  console.log(response.data)
+  console.log('-------------------------')
+  return response.data
+}
+
+
 export const allUsersAPI = async () => {
   const response = await $authHost.get('user/all')
   return response.data
 }
+
 

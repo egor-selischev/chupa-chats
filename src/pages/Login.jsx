@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const {setSelfEmail} = useContext(AuthContext)
+  const {setSelfEmail, test, selfEmail} = useContext(AuthContext)
 
   const login = async event => {
     try {
@@ -22,6 +22,10 @@ const Login = () => {
       setIsAuth(true)
       navigate("/")
       localStorage.setItem('auth', 'true')
+      localStorage.setItem('email', JSON.stringify(response.data.email))
+      localStorage.setItem('user', JSON.stringify(test.find(user => user.email === selfEmail)))
+      console.log(selfEmail)
+      console.log(test)
     } catch (e) {
         alert(e.response.data.message)
     }

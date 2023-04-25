@@ -9,6 +9,8 @@ const Header = () => {
     setIsAuth(false)
     localStorage.removeItem('auth')
     localStorage.removeItem('token')
+    localStorage.removeItem('email')
+    localStorage.removeItem('user')
   }
 
   return (
